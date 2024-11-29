@@ -7,7 +7,7 @@ from controllers.cacheController import Redis
 #Functions
 from functions.userInput import userInput
 
-def getData(value, input):
+def getData(redis_instance, value, input):
     rds_instance = rds()
     query = f"""
                 SELECT 
@@ -40,7 +40,12 @@ def getData(value, input):
                 """
 
     data = rds_instance.getQueryData(rds_instance.connection, query)
-    return data
+    rds_instance.closeConnection()
+
+    json_data = data.to_json(orient='records')
+
+    key = f"{value[input]}Data"
+    status = redis_instance.setValue(redis_instance.redis_client, key, categories_json)
 
 def saveCategories():
     rds_instance = rds()
@@ -65,8 +70,12 @@ def browseCategories():
     inputString = f"Seleccione una categoria (0-{len(value)-1})."
     input = userInput(inputString, value)
 
-    data = getData(value, input)
-    print(data)
+    getData(redis_instance=redis_instance, value=value, input=input)
+
+    key = f"{value[input]}Data"
+    value = json.loads(redis_instance.getValue(redis_instance.redis_client, key))
+
+    print(key)
     
 
     
