@@ -1,12 +1,11 @@
 import os
 import sys
-import json
 
 sys.path.append(os.path.join(os.path.dirname(__file__), 'controllers'))
 
-from controllers.rdsController import rds
-from controllers.cacheController import Redis
+#Functions
 from functions.userInput import userInput
+from functions.userInput import consultarCategorias
 
 if __name__ == "__main__":
 
@@ -14,25 +13,15 @@ if __name__ == "__main__":
     inputOption = ["Buscar Pelicula por categoria"]
     input = userInput(inputString, inputOption)
 
-    print(f"El input fue {input}")
+    if input == 0:
+        consultarCategorias()
 
-    rds_instance = rds()
-    
-    # Ejecutar una consulta
-    query = "SELECT name FROM category"
-    categories = rds_instance.getQueryData(rds_instance.connection, query)
-    rds_instance.closeConnection()
 
-    categories_names = categories['name'].tolist()
-    categories_json = json.dumps(categories_names)
     
 
-    redis_instance = Redis()
-    status = redis_instance.setValue(redis_instance.redis_client, "Categorias", categories_json)
+    
+    
 
-    if status == "OK":
-        value = redis_instance.getValue(redis_instance.redis_client, "Categorias")
-        print(value)
     
     
     # Cerrar la conexión
