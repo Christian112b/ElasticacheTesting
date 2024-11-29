@@ -14,4 +14,4 @@ if __name__ == "__main__":
     input = userInput(inputString, inputOption)
 
     if input == 0:
-        consultarCategorias()
+        browseCategories()
