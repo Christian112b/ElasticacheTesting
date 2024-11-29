@@ -10,14 +10,34 @@ from functions.userInput import userInput
 def getData(value, input):
     rds_instance = rds()
     query = f"""
-            SELECT f.title
-            FROM film f
-            JOIN film_category fc ON f.film_id = fc.film_id
-            JOIN category c ON fc.category_id = c.category_id
-            WHERE c.name = '{value[input]}';
-        """
-    
-    print(query)
+                SELECT 
+                    f.title,
+                    f.description,
+                    f.release_year,
+                    f.length,
+                    f.rating,
+                    c.name AS category_name,
+                    l.name AS language,
+                    GROUP_CONCAT(DISTINCT CONCAT(a.first_name, ' ', a.last_name) ORDER BY a.last_name) AS actors
+                FROM 
+                    film f
+                JOIN 
+                    film_category fc ON f.film_id = fc.film_id
+                JOIN 
+                    category c ON fc.category_id = c.category_id
+                JOIN 
+                    language l ON f.language_id = l.language_id
+                JOIN 
+                    film_actor fa ON f.film_id = fa.film_id
+                JOIN 
+                    actor a ON fa.actor_id = a.actor_id
+                WHERE 
+                    c.name = '{value[input]}'
+                GROUP BY 
+                    f.film_id, f.title, f.description, f.release_year, f.length, f.rating, c.name, l.name
+                ORDER BY 
+                    f.title;
+                """
 
     data = rds_instance.getQueryData(rds_instance.connection, query)
     return data
@@ -46,6 +66,7 @@ def browseCategories():
     input = userInput(inputString, value)
 
     data = getData(value, input)
+    print(data)
     
 
     
