@@ -26,7 +26,7 @@ def browseCategories():
 
     redis_instance = saveCategories()
 
-    value = redis_instance.getValue(redis_instance.redis_client, "Categorias")
+    value = json.loads(redis_instance.getValue(redis_instance.redis_client, "Categorias"))
 
     inputString = f"Seleccione una categoria (0-{len(value)-1})."
     input = userInput(inputString, value)
