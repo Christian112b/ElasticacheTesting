@@ -45,7 +45,7 @@ def getData(redis_instance, value, input):
     json_data = data.to_json(orient='records')
 
     key = f"{value[input]}Data"
-    status = redis_instance.setValue(redis_instance.redis_client, key, categories_json)
+    status = redis_instance.setValue(redis_instance.redis_client, key, json_data)
 
 def saveCategories():
     rds_instance = rds()
