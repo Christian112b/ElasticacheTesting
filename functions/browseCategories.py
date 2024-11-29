@@ -7,6 +7,20 @@ from controllers.cacheController import Redis
 #Functions
 from functions.userInput import userInput
 
+def getData(value, input):
+    rds_instance = rds()
+    query = f"""
+            SELECT f.title
+            FROM film f
+            JOIN film_category fc ON f.film_id = fc.film_id
+            JOIN category c ON fc.category_id = c.category_id
+            WHERE c.name = {value[input]};
+        """
+    
+    print(query)
+
+    data = rds_instance.getQueryData(rds_instance.connection, query)
+    return data
 
 def saveCategories():
     rds_instance = rds()
@@ -31,8 +45,7 @@ def browseCategories():
     inputString = f"Seleccione una categoria (0-{len(value)-1})."
     input = userInput(inputString, value)
 
-    print(input)
-
+    data = getData(value, input)
     
 
     
