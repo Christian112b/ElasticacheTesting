@@ -5,7 +5,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'controllers'))
 
 #Functions
 from functions.userInput import userInput
-from functions.userInput import consultarCategorias
+from functions.browseCategories import browseCategories
 
 if __name__ == "__main__":
 
@@ -15,16 +15,3 @@ if __name__ == "__main__":
 
     if input == 0:
         consultarCategorias()
-
-
-    
-
-    
-    
-
-    
-    
-    # Cerrar la conexión
-    
-
-
