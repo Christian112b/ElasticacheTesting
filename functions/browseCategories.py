@@ -74,11 +74,23 @@ def browseCategories():
     getData(redis_instance=redis_instance, value=value, input=input)
 
     key = f"{value[input]}Data"
+    print("Key de df guardado", key)
     value = json.loads(redis_instance.getValue(redis_instance.redis_client, key))
     data = pd.DataFrame(value)
 
-    print(data)
+    movies_names = data['title'].to_list()
+
+
+    inputString = f"Seleccione una pelicula (0-{len(value)-1})."
+    input = userInput(inputString, movies_names)
+
+    print("Selecciono la pelicula con el ID:", input)
+
+ 
+
+    #print(data)
     
 
 
     
+
