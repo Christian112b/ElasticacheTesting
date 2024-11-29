@@ -74,8 +74,10 @@ def browseCategories():
 
     key = f"{value[input]}Data"
     value = json.loads(redis_instance.getValue(redis_instance.redis_client, key))
+    data = pd.DataFrame(value)
 
-    print(value)
+    print(data)
+    
     
 
     
