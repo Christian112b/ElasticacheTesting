@@ -4,7 +4,7 @@ import json
 from controllers.rdsController import rds
 from controllers.cacheController import Redis
 
-def saveCategories(rds_instance):
+def saveCategories():
     rds_instance = rds()
     query = "SELECT name FROM category"
     categories = rds_instance.getQueryData(rds_instance.connection, query)
