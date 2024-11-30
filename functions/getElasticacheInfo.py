@@ -1,9 +1,12 @@
+import time
+import random
 from controllers.cacheController import Redis
 
 def getElasticacheInfo():
     redis_instance = Redis()
-
-    #keys = redis_instance.scanKeys(redis_instance)
-    for key in redis_instance.scan_iter("user:*"):
-        print(key)
-        #r.delete(key)
+    for i in range(1000):
+        key = f"user:{random.randint(1000, 9999)}"  # Genera una clave aleatoria
+        value = f"data:{random.randint(1000, 9999)}"  # Genera un valor aleatorio
+        redis_instance.set(key, value)  # Ejecuta SET
+        time.sleep(0.01)  # Pausa de 10 ms entre cada operación para no sobrecargar el clúster
+        

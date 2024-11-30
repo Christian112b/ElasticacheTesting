@@ -14,7 +14,7 @@ if __name__ == "__main__":
 
     while not bandera:
         inputString = "Ingrese una opcion."
-        inputOption = ["Buscar Pelicula por categoria", "Informacion guardada en Elasticache","Salir"]
+        inputOption = ["Buscar Pelicula por categoria", "DEV: Uso excesivo de cluster","Salir"]
         inputUser = userInput(inputString, inputOption)
 
         if inputUser == 0:
