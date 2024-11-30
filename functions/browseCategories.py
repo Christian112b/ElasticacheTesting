@@ -94,8 +94,10 @@ def browseCategories():
 
     input = userInput(inputString, columns)
 
-    print(input)
-    
+    if columns[input] == "Toda la tabla":
+        print(data)
+    else:
+        print(data[columns[input]])
 
 
     

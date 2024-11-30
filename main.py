@@ -6,15 +6,23 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'controllers'))
 #Functions
 from functions.userInput import userInput
 from functions.browseCategories import browseCategories
+from functions.getElasticacheInfo import elasticacheInfo
 
 if __name__ == "__main__":
 
-    inputString = "Ingrese una opcion."
-    inputOption = ["Buscar Pelicula por categoria"]
-    input = userInput(inputString, inputOption)
+    bandera = False
 
-    if input == 0:
-        browseCategories()
-    elif input == 9:
-	#Revisar metricas
-	    print("Aqui deberia de estar algunas metricas")
+    while not bandera:
+        inputString = "Ingrese una opcion."
+        inputOption = ["Buscar Pelicula por categoria", "Informacion guardada en Elasticache","Salir"]
+        inputUser = userInput(inputString, inputOption)
+
+        if inputUser == 0:
+            browseCategories()
+        elif inputUser == 1:
+            getElasticacheInfo()
+        elif inputUser == 2:
+            print("Saliendo")
+            bandera = True
+
+

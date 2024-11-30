@@ -42,3 +42,11 @@ class Redis:
         except Exception as e:
             print(f"Error al obtener el valor de Redis: {e}")
             return None
+
+    def listKeys(self, redis_client, pattern="*"):
+        try:
+            keys = redis_client.keys(pattern)
+            return keys
+        except Exception as e:
+            print(f"Error al obtener las claves de Redis: {e}")
+            return []
