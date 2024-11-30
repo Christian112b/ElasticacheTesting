@@ -9,5 +9,5 @@ def getElasticacheInfo():
         value = f"data:{random.randint(1000, 99999)}"  # Genera un valor aleatorio
         print(value)
         redis_instance.redis_client.set(key, value)  # Ejecuta SET
-        time.sleep(0.001)  # Pausa de 10 ms entre cada operación para no sobrecargar el clúster
+        time.sleep(0.0001)  # Pausa de 10 ms entre cada operación para no sobrecargar el clúster
         
