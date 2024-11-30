@@ -6,7 +6,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'controllers'))
 #Functions
 from functions.userInput import userInput
 from functions.browseCategories import browseCategories
-from functions.getElasticacheInfo import elasticacheInfo
+from functions.getElasticacheInfo import getElasticacheInfo
 
 if __name__ == "__main__":
 
