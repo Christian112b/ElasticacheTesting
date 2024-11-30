@@ -16,6 +16,5 @@ if __name__ == "__main__":
     if input == 0:
         browseCategories()
     elif input == 9:
-	
 	#Revisar metricas
-	print("Aqui deberia de estar algunas metricas")
+	    print("Aqui deberia de estar algunas metricas")
