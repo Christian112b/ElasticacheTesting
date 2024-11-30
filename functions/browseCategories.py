@@ -84,11 +84,17 @@ def browseCategories():
     inputString = f"Seleccione una pelicula (0-{len(value)-1})."
     input = userInput(inputString, movies_names)
 
-    print("Selecciono la pelicula con el ID:", input)
+    print("Pelicula seleccionadas: ",movies_names[input])
 
- 
+    inputString = f"Seleccione una columna a mostrar."
 
-    #print(data)
+    columns = data.columns.to_list()
+    columns.append("Toda la tabla")
+
+
+    input = userInput(inputString, columns)
+
+    print(input)
     
 
 
