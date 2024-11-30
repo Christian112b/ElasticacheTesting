@@ -49,7 +49,7 @@ class Redis:
         """
         try:
             # Usamos scan_iter de RedisCluster
-            keys = list(redis_client.scan_iter(pattern))
+            cursor, keys = redis_client.scan(0, pattern=pattern)
             return keys
         except Exception as e:
             print(f"Error al obtener las claves de Redis: {e}")
