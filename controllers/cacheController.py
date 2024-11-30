@@ -43,8 +43,12 @@ class Redis:
             print(f"Error al obtener el valor de Redis: {e}")
             return None
 
-    def listKeys(self, redis_client, pattern="*"):
+    def scanKeys(self, redis_client, pattern="*"):
+        """
+        Listar todas las claves que coinciden con un patrón utilizando scan_iter
+        """
         try:
+            # Usamos scan_iter de RedisCluster
             keys = list(redis_client.scan_iter(pattern))
             return keys
         except Exception as e:
