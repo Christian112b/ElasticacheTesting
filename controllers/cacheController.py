@@ -45,7 +45,7 @@ class Redis:
 
     def listKeys(self, redis_client, pattern="*"):
         try:
-            keys = redis_client.keys(pattern)
+            keys = list(redis_client.scan_iter(pattern))
             return keys
         except Exception as e:
             print(f"Error al obtener las claves de Redis: {e}")
